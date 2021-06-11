@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid mt-3">
+    <div class="container-fluid ">
         <div class="row">
             <div class="col-12 p-0">
                 <h5>Variáveis</h5>
@@ -31,18 +31,21 @@
                     <label class="text-clean pe-2" for="autoSizingInputGroup"><b>Headers</b></label>
                     <button @click="hideForm" class="btn btn-sm btn-danger text-white p-0 px-2 ">-</button>
                 </div>
+
             </div>
+
             <div class="col-12 mt-2">
                 
                 <div v-if="showFormHeader" class="input-group">
-                    <input type="text" v-model="headerNew.key" class="form-control bg-dark text-white" id="autoSizingInput" placeholder="key">
-                    <input type="text" v-model="headerNew.val" class="form-control bg-dark text-white" id="autoSizingInputGroup" placeholder="value">
+                    <input type="text" v-model="headerNew.key" class="form-control bg-dark text-white" placeholder="key">
+                    <input type="text" v-model="headerNew.val" class="form-control bg-dark text-white" placeholder="value">
                     <button @click="addHeader" class="btn btn-primary">add</button>
                 </div>
                 
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mt-2">
+
                 <div v-for="(el, index) in headers" :key="index" class="bg-dark px-3 py-1 my-1">
                     <button
                         @click="removeElement(index)"            
@@ -50,6 +53,7 @@
                     >X</button>
                     <p class="p-0 w-100"><b>{{ el.key }}:</b> {{ el.val }}</p>
                 </div>
+                
             </div>
 
             <div class="col-12">
@@ -66,6 +70,8 @@
 <script>
 
 export default {
+
+    name:"Variables",
 
     data(){
         return {
@@ -96,20 +102,28 @@ export default {
         },
 
         addHeader(){
-            console.log(this.uri)
-            try {
-                let body = JSON.parse(this.body);
-                console.log(body)
-                
-            } catch (e) {
-                return false;
-            }
-            
             if(this.headerNew.key != "" && this.headerNew.val != ""){
                 this.headers.push({key:this.headerNew.key, val:this.headerNew.val})
                 this.headerNew.key = "";
                 this.headerNew.val = "";
                 this.showFormHeader = false;
+            }
+        },
+
+        getObject(){
+            var body = "";
+            if(this.body.trim() != ""){
+                try {
+                    body = JSON.parse(this.body);
+                } catch (e) {
+                    return false;
+                }
+            } 
+            return {
+                headers:this.headers,
+                uri:this.uri,
+                method:this.method,
+                body:body
             }
         }
 

@@ -2,7 +2,7 @@
     "files":[
         "default",
         "production",
-        "erro"
+        "test"
     ],
     "name":"Hunter"
 }

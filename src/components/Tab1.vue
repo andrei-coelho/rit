@@ -6,7 +6,6 @@
                 
                 <span class="text-clean"><b>Projeto:</b></span>
                 
-                
                 <button class="btn btn-sm btn-primary p-0 float-end">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 20 20"
@@ -17,7 +16,7 @@
                     </svg>
                 </button>
 
-                <button class="btn btn-sm p-0 float-end me-2">
+                <button @click="play" class="btn btn-sm p-0 float-end me-2">
                     <img src="img/ic-run-3.svg" >
                 </button>
                 
@@ -25,20 +24,10 @@
                 
             </div>
 
-            <!--
-            <div class="col-12">
-                <div class="form-floating bg-dark">
-                    <select class="form-select bg-dark text-white border-0" id="floatingSelectGrid1">
-                        <option class="text-white" value="1" selected>Json</option>
-                        <option class="text-white" value="2">Text</option>
-                    </select>
-                    <label for="floatingSelectGrid1">Response:</label>
-                </div>
-            </div>
-            -->
             <div class="col-12 mt-1">
 
                 <span class="text-clean"><b>Arquivo Selecionado:</b></span>
+
                 <button class="btn btn-sm btn-primary p-0 float-end">
                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20px" height="20px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 20 20"
@@ -48,12 +37,14 @@
                     </g>
                     </svg>
                 </button>
+
                 <div class="form-floating bg-dark mt-2">
                     <select @change="onChangeSelect($event)" class="form-select bg-dark text-white border-0" id="floatingSelectGrid2"> 
                         <option v-for="(file, index) in files" :key="index" class="text-white" :value="file">{{ file }}</option>     
                     </select>
                     <label for="floatingSelectGrid2">Config File:</label>
                 </div>
+
             </div>
 
             <div class="col-12 mt-3">
@@ -131,6 +122,10 @@ export default {
                 this.$emit('changeConfig', this.fileSelected)
             });
         },
+
+        play(){
+            this.$emit('play', this.fileSelected);
+        }
 
     },
 }

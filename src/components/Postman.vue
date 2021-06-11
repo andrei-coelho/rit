@@ -1,23 +1,22 @@
 <template>
     <div class="container-fluid">
-        <div class="row border" style="height:102%; width: 101%; position:fixed; top: -1%">
-            <div class="col-3 bg-light text-white overflow-auto p-0" style="height:100%;">
+        <div class="row border" style="height:102%; width: 101%; position:fixed; top: -1%;">
+            <div class="col-3 bg-light text-white overflow-auto p-0" style="height:100%; padding: 1%;">
                 <!-- Tab1 -->
                 <DocumentMenu/>
                 <Tab1 
                     :projectSlug="projectSlug"
                     @changeConfig="onChangeConfig"
+                    @play="onPlay"
                 />
             </div>
-            <div class="col-4 bg-secondary text-white overflow-auto" style="height:100%;" >
+            <div class="col-4 bg-secondary text-white overflow-auto" style="height:100%; padding: 1%;" >
                 <!-- Tab2 -->
-                <Tab2
-                    @changeVariables="onChangevariables"
-                />
+                <Tab2 ref="Variables"/>
             </div>
-            <div class="col-5 bg-dark text-white overflow-auto" style="height:100%;" >
+            <div class="col-5 bg-dark text-white overflow-auto" style="height:100%;  padding: 1%;" >
                 <!-- Tab3 -->
-                
+                <Tab3 ref="Response"/>
             </div>
         </div>
     </div>
@@ -29,10 +28,11 @@
 import DocumentMenu from './DocumentMenu.vue'
 import Tab1 from './Tab1.vue'
 import Tab2 from './Tab2.vue'
+import Tab3 from './Tab3.vue'
 
 export default {
 
-    components:{DocumentMenu, Tab1, Tab2},
+    components:{DocumentMenu, Tab1, Tab2, Tab3},
 
     data(){
         return {
@@ -43,12 +43,53 @@ export default {
     },
 
     methods: {
+
         onChangeConfig(obj){
             this.objBase = obj;
         },
+
         onChangevariables(obj){
             this.variables = obj;
+        },
+
+        onPlay(obj){
+            this.objBase = obj;
+            this.variables = this.$refs['Variables'].getObject();
+            this.run();
+        },
+
+        run(){
+            
+            var obj = this.objBase;
+            var variables = this.variables; 
+
+            var headers = new Headers();
+            
+            if(obj.headers){
+                Object.keys(obj.headers).forEach(item => {
+                    headers.append(item, obj.headers[item]);
+                })
+            }
+            
+            variables.headers.forEach(item => {
+                headers.append(item.key, item.val);
+            })
+            
+            var init = {
+                method:variables.method,
+                headers:headers
+            };
+
+            var request = obj.base_url+variables.uri;
+
+            fetch(request, init)
+            .then(response => response.text())
+            .then(data => {
+                this.$refs['Response'].changeView(data)
+            });
+
         }
+
     }
 
 }

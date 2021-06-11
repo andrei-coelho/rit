@@ -1,0 +1,49 @@
+.prettyMarkContent.prettyMarkLight { 
+    background-color: white;
+}
+
+.prettyMarkContent.prettyMarkDark {
+    background-color: #18151F;
+}
+
+.prettyMarkContent {
+    line-height: 1.2;
+    font-family: Consolas,"courier new";
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.prettyMarkLight .__string {
+    color:#54790D;
+}
+.prettyMarkLight .__bool {
+    color:#EE505E;
+}
+.prettyMarkLight .__not_string_or_bool {
+    
+    color:#015692;
+}
+.prettyMarkLight .__key {
+    color:#B3663A;
+}
+.prettyMarkLight .__mark {
+    color:#333333;
+}
+
+.prettyMarkDark .__string {
+    color:#96B38A;
+}
+.prettyMarkDark .__bool {
+    color:#EE505E;
+}
+.prettyMarkDark .__not_string_or_bool {
+    color:#D0782A
+}
+.prettyMarkDark .__key {
+    color:#DDCA7E;
+}
+.prettyMarkDark .__mark {
+    color:white;
+}
