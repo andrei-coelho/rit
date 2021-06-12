@@ -1,6 +1,6 @@
 {
     "name":"Developer Test",
     "slug":"default",
-    "base_url":"http://api.weatherapi.com/v1/",
+    "base_url":"https://jsonplaceholder.typicode.com/posts",
     "headers":{}
 }

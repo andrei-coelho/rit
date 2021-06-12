@@ -80,15 +80,20 @@ export default {
                 headers:headers
             };
 
+            if(variables.method != 'get'){
+                init['body'] = variables.body
+            }
+
             var request = obj.base_url+variables.uri;
 
             fetch(request, init)
             .then(response => response.text())
             .then(data => {
                 this.$refs['Response'].changeView(data)
-            });
+            })
+            .catch(err => console.log(err));
 
-        }
+        },
 
     }
 
