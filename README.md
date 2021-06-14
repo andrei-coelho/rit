@@ -1,2 +1,2 @@
-# rid
-RID (Rest Interface Data) - Rest API Test Automation
+# RIT
+RIT (Rest Interface Tests) - Rest API Test Automation
