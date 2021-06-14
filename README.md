@@ -1,4 +1,4 @@
-![logo RIT](simple_logo.png)
+![logo RIT](logo.png)
 
 *0.0.1-build*
 
