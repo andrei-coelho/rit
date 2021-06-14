@@ -36,6 +36,10 @@ export default {
 
     data(){
         return {
+            response:{
+                ok:true,
+                code:200
+            },
             projectSlug:"hunter",
             objBase:{},
             variables:{}
@@ -53,6 +57,7 @@ export default {
         },
 
         onPlay(obj){
+            this.$refs['Response'].loading();
             this.objBase = obj;
             this.variables = this.$refs['Variables'].getObject();
             this.run();
@@ -87,11 +92,25 @@ export default {
             var request = obj.base_url+variables.uri;
 
             fetch(request, init)
-            .then(response => response.text())
+            .then(response => {
+                this.response.status = response.ok;
+                this.response.code = response.status;
+                return response.text();
+            })
             .then(data => {
+                if(!this.response.status){
+                    var isJSON = false;
+                    try {
+                        JSON.parse(data);
+                        isJSON = true;
+                    } catch(e){
+                        isJSON = false;
+                    }                      
+                    throw '{"code":'+this.response.code+', "body": '+(isJSON?data:'"'+data+'"')+'}';
+                }
                 this.$refs['Response'].changeView(data)
             })
-            .catch(err => console.log(err));
+            .catch(err => this.$refs['Response'].errors(err));
 
         },
 

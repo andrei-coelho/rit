@@ -4,7 +4,6 @@ export default function(obj) {
         try {
             obj = JSON.parse(obj)
         } catch (error) {
-            console.log(error);
             return false;
         }
     }
@@ -12,7 +11,6 @@ export default function(obj) {
     return obj ? valueOf(obj).slice(0, -1)+"</span>" : "";
     
 }
-
 
 function getSpaces(count){
     var spaces = "";
