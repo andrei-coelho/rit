@@ -68,16 +68,14 @@ export default {
             var obj = this.objBase;
             var variables = this.variables; 
 
-            var headers = new Headers();
+            var headers = {};
             
             if(obj.headers){
-                Object.keys(obj.headers).forEach(item => {
-                    headers.append(item, obj.headers[item]);
-                })
+                headers = obj.headers;
             }
             
             variables.headers.forEach(item => {
-                headers.append(item.key, item.val);
+                headers[item.key] =  item.val;
             })
             
             var init = {
@@ -86,7 +84,7 @@ export default {
             };
 
             if(variables.method != 'get'){
-                init['body'] = variables.body
+                init['body'] = JSON.stringify(variables.body)
             }
 
             var request = obj.base_url+variables.uri;

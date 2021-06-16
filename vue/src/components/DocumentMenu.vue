@@ -2,7 +2,7 @@
     <div class="container-fluid bg-dark" style="margin-top: 1%;">
         <div class="row">
             <div class="col-9 p-0">
-                <img src="img/logo.svg" class="mt-2"> <small style="font-size: 10px;">0.0.1</small>
+                <img src="img/logo.svg" class="mt-2"> <small style="font-size: 10px;">0.0.1-build</small>
             </div>
 
             <div class="col-3 p-0">

@@ -71,9 +71,7 @@ export default {
             this.isLoading = false;
             if(parse){
                 try {
-                    
-                    let rem = str.replace(/[\n\t\r\s]/g, "");
-                    let obj = JSON.parse(rem);
+                    let obj = JSON.parse(str);
                     this.codeError = obj.code +" - "+ message;
                     str = obj.body;
                 } catch(e){

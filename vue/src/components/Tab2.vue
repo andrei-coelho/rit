@@ -14,7 +14,8 @@
                     <div class="form-floating bg-dark">
                         <select v-model="method" class="form-select bg-dark text-white border-0" id="floatingSelectGrid1">
                             <option class="text-white" value="get">GET</option>
-                            <option class="text-white" value="post"> POST</option>
+                            <option class="text-white" value="post">POST</option>
+                            <option class="text-white" value="options">OPTIONS</option>
                         </select>
                         <label for="floatingSelectGrid1">Method:</label>
                     </div>
