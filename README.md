@@ -3,3 +3,5 @@
 *0.0.1-build*
 
 RIT (Rest Interface Tests) - Rest API Test Automation
+
+![logo RIT](program.png)
